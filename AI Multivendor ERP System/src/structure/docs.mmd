@@ -1,0 +1,37 @@
+flowchart TD
+    subgraph docs [Documentation]
+        subgraph API [API Documentation]
+            A1[authentication.md - Auth APIs]
+            A2[orders.md - Order APIs]
+            A3[inventory.md - Inventory APIs]
+            A4[ai-services.md - AI APIs]
+            A5[finance.md - Finance APIs]
+            A6[README.md - API Overview]
+        end
+        
+        subgraph architecture [System Architecture]
+            B1[system-overview.md - High-level Architecture]
+            B2[frontend-architecture.md - React.js Structure]
+            B3[backend-architecture.md - Node.js & Database]
+            B4[ai-architecture.md - AI Services & Models]
+            B5[database-schema.md - DB Schema]
+            B6[README.md - Architecture Summary]
+        end
+        
+        subgraph deployment [Deployment & CI/CD]
+            C1[local-setup.md - Local Environment]
+            C2[docker-deployment.md - Docker Setup]
+            C3[cloud-deployment.md - AWS, GCP, Azure]
+            C4[CI-CD.md - Continuous Integration & Deployment]
+            C5[README.md - Deployment Overview]
+        end
+        
+        subgraph usage [User & Analytics Guide]
+            D1[user-guide.md - Vendor/Admin/Customer Guide]
+            D2[virtual-assistant.md - AI Chatbot Usage]
+            D3[analytics-reports.md - AI Analytics & Reports]
+            D4[README.md - Usage Summary]
+        end
+
+        E[README.md - General Documentation Overview]
+    end

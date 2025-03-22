@@ -1,15 +1,21 @@
 {
-  "name": "npm",
+  "name": "ai-multivendor-erp-system",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "AI Multivendor ERP System",
+  "main": "index.js",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint .",
+    "lint": "eslint src",
     "preview": "vite preview",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "install": "echo 'Custom install script running!' && npm install"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
@@ -26,6 +32,8 @@
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^15.15.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^14.0.0",
     "prettier": "^3.5.3",
     "vite": "^6.2.0"
   },
