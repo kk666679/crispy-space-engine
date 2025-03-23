@@ -1,0 +1,14 @@
+export const getPostById = async (postId) => {
+    const res = await
+fetch('${import.meta.Vite_BACKEND_URL}/posts/
+${postId})
+    return await res.json()
+}   
+
+        {fullPost ? (
+            <h3>{title}</h3>
+        ) :( 
+            <link to={'/posts/${_Id}'}>
+                <h3>{title}</h3>
+            </Link>
+        )}
