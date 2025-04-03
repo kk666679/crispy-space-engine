@@ -7,48 +7,48 @@ An advanced Enterprise Resource Planning (ERP) system designed for multivendor b
 ## Features
 
 ✅ **AI Virtual Assistant:**
-         – Helps users with queries, recommendations, and automation.
+           – Helps users with queries, recommendations, and automation.
 
-✅ **Multivendor Support** 
-         – Each vendor manages their own products, orders, and inventory.
+✅ **Multivendor Support**
+           – Each vendor manages their own products, orders, and inventory.
 
-✅ **Order & Inventory Management** 
-         – Tracks stock levels, shipments, and order statuses.
+✅ **Order & Inventory Management**
+           – Tracks stock levels, shipments, and order statuses.
 
-✅ **AI-Driven Recommendations** 
-         – Predicts demand, suggests restocking, and optimizes sales.
+✅ **AI-Driven Recommendations**
+           – Predicts demand, suggests restocking, and optimizes sales.
 
-✅ **Financial Module** 
-         – Handles invoices, transactions, and fraud detection.
+✅ **Financial Module**
+           – Handles invoices, transactions, and fraud detection.
 
-✅ **Role-Based Access Control (RBAC)** 
-         – Admin, vendor, and customer-specific access.
+✅ **Role-Based Access Control (RBAC)**
+           – Admin, vendor, and customer-specific access.
 
 ---
 
 ## Tech Stack
 
-     - Frontend (Client) - React.js
-     - React.js (Hooks, Context API / Redux)
-     - React Router (Navigation)
-     - Material UI / Tailwind CSS (UI Framework)
-     - Axios (API Requests)
-     - Backend (Server) - Node.js & Express.js
-     - Node.js + Express.js (API Development)
-     - MongoDB / PostgreSQL (Database)
-     - Mongoose / Sequelize (ORM)
-     - JWT & OAuth (Authentication)
-     - Multer (File Uploads)
+      - Frontend (Client) - React.js
+      - React.js (Hooks, Context API / Redux)
+      - React Router (Navigation)
+      - Material UI / Tailwind CSS (UI Framework)
+      - Axios (API Requests)
+      - Backend (Server) - Node.js & Express.js
+      - Node.js + Express.js (API Development)
+      - MongoDB / PostgreSQL (Database)
+      - Mongoose / Sequelize (ORM)
+      - JWT & OAuth (Authentication)
+      - Multer (File Uploads)
 
 ## AI Services
 
-**Natural Language Processing (NLP)** 
+**Natural Language Processing (NLP)**
 – AI chatbot & Virtual Assistant
-**Machine Learning (ML)** 
+**Machine Learning (ML)**
 – Predictive analytics & recommendations
-**Fraud Detection** 
+**Fraud Detection**
 – AI-powered transaction monitoring
-**Chatbot AI** 
+**Chatbot AI**
 – Automated customer & vendor support
 
 ---
@@ -56,12 +56,12 @@ An advanced Enterprise Resource Planning (ERP) system designed for multivendor b
 # Installation & Setup
 
 1. Clone the Repository
-git clone https://github.com/yourusername/ai-multivendor-erp.gitcd ai-multivendor-erp
+git clone <https://github.com/yourusername/ai-multivendor-erp.gitcd> ai-multivendor-erp
 2. Setup Backend
 cd server
 npm install
 cp .env.example .env # Add your environment variablesnpm start
-3. Setup Frontendcd 
+3. Setup Frontendcd
 client
 npm install
 npm start
