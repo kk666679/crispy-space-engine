@@ -1,0 +1,103 @@
+import React, { useEffect, useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Header from '../components/Header';
+
+const AIRecommendations = () => {
+    const [recommendations, setRecommendations] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+
+    const fetchRecommendations = useCallback(async () => {
+        const token = localStorage.getItem('token');
+
+        if (!token) {
+            navigate('/login');
+            return;
+        }
+
+        try {
+            const response = await fetch('/api/recommendations', {
+                headers: { Authorization: `Bearer ${token}` },
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch AI recommendations.');
+            }
+
+            const data = await response.json();
+            setRecommendations(data);
+        } catch (err) {
+            setError(err.message);
+            localStorage.removeItem('token'); // Remove invalid token
+            navigate('/login'); // Redirect to login
+        } finally {
+            setLoading(false);
+        }
+    }, [navigate]);
+
+    useEffect(() => {
+        fetchRecommendations();
+    }, [fetchRecommendations]);
+
+    return (
+        <div style={styles.container}>
+            <Header title="AI Recommendations" />
+
+            {loading ? (
+                <p style={styles.loading}>Loading AI recommendations...</p>
+            ) : error ? (
+                <p style={styles.error}>{error}</p>
+            ) : (
+                <div style={styles.recommendationsContainer}>
+                    {recommendations.length > 0 ? (
+                        recommendations.map((rec, index) => (
+                            <div key={index} style={styles.recommendationCard}>
+                                <p>{rec}</p>
+                            </div>
+                        ))
+                    ) : (
+                        <p style={styles.noData}>No recommendations available.</p>
+                    )}
+                </div>
+            )}
+        </div>
+    );
+};
+
+// Styles for better UI
+const styles = {
+    container: {
+        padding: '2rem',
+        textAlign: 'center',
+    },
+    loading: {
+        fontSize: '1.2rem',
+        color: '#007bff',
+    },
+    error: {
+        fontSize: '1.2rem',
+        color: 'red',
+        fontWeight: 'bold',
+    },
+    recommendationsContainer: {
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+        gap: '1rem',
+        marginTop: '1rem',
+    },
+    recommendationCard: {
+        backgroundColor: 'white',
+        padding: '1rem',
+        borderRadius: '10px',
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+        textAlign: 'center',
+    },
+    noData: {
+        fontSize: '1.1rem',
+        fontWeight: 'bold',
+        color: '#555',
+    },
+};
+
+export default AIRecommendations;
