@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: React App with AWS SAM
+
+Resources:
+  ReactApp:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: build/  # After running 'npm run build'
+      Handler: index.handler
+      Runtime: nodejs18.x
+      Events:
+        CatchAll:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
