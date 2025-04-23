@@ -1,0 +1,59 @@
+{
+  "name": "your-project",
+  "version": "1.0.1",
+  "private": true,
+  "scripts": {
+    "frontend": "react-scripts start",
+    "backend": "nodemon server.js",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "lint": "eslint src",
+    "preview": "vite preview --port 4173",
+    "eject": "react-scripts eject",
+    "start": "concurrently \"npm run backend\" \"npm run frontend\"",
+    "sam:local": "sam local start-api -t template.yaml",
+    "sam:invoke": "sam local invoke -d 5858 ReactApp",
+    "sam:package": "sam package --output-template-file packaged.yaml --s3-bucket YOUR_S3_BUCKET",
+    "sam:deploy": "sam deploy --template-file packaged.yaml --stack-name react-app-stack --capabilities CAPABILITY_IAM"
+  },
+  "dependencies": {
+    "@aws-sdk/client-personalize-runtime": "^3.782.0",
+    "@aws-sdk/client-sns": "^3.782.0",
+    "@aws-sdk/client-sqs": "^3.782.0",
+    "@reduxjs/toolkit": "^2.6.1",
+    "aws-sam-client": "^0.3.0",
+    "axios": "^1.6.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^6.18.0",
+    "react-scripts": "5.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.9",
+    "@types/react": "^18.2.41",
+    "@types/react-dom": "^18.2.18",
+    "concurrently": "^8.2.1",
+    "eslint": "^8.55.0",
+    "eslint-plugin-react": "^7.33.2",
+    "nodemon": "^3.0.2",
+    "typescript": "^5.3.2",
+    "vite": "^5.0.8"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
+"overrides": {
+  "nth-check": "2.0.1",
+  "postcss": "8.4.31"
+}

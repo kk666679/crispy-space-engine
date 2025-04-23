@@ -12,9 +12,11 @@ def validate_input(message):
         message (str): The user's input message.
 
     Returns:
-        str: Sanitized message if valid, or an error message.
+        tuple: Sanitized message if valid, or an error message.
     """
-    if not message or not message.strip():
+    if not isinstance(message, str):
+        return None, "Input must be a string."
+    if not message.strip():
         return None, "Please provide a valid input."
     sanitized_message = message.strip()
     return sanitized_message, None
@@ -29,11 +31,18 @@ def analyze_sentiment(message):
     Returns:
         dict: Sentiment analysis results (polarity and subjectivity).
     """
-    sentiment = TextBlob(message).sentiment
-    return {
-        "polarity": sentiment.polarity,
-        "subjectivity": sentiment.subjectivity
-    }
+    try:
+        sentiment = TextBlob(message).sentiment
+        return {
+            "polarity": sentiment.polarity,
+            "subjectivity": sentiment.subjectivity
+        }
+    except Exception as e:
+        logging.error(f"Error during sentiment analysis: {e}", exc_info=True)
+        return {
+            "polarity": 0.0,
+            "subjectivity": 0.0
+        }
 
 def generate_response(message, sentiment):
     """
@@ -69,6 +78,7 @@ def get_response(message):
         # Validate input
         sanitized_message, error = validate_input(message)
         if error:
+            logging.warning(f"Validation error: {error}")
             return error
 
         # Log sanitized input

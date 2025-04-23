@@ -1,18 +1,28 @@
-require('dotenv').config();
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const { body, validationResult } = require('express-validator');
 
-// Initialize express app
 const app = express();
+const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(express.json());
-app.use(cors());
 app.use(helmet());
+app.use(cors({
+  origin: process.env.NODE_ENV === 'production' 
+    ? 'https://yourdomain.com' 
+    : 'http://localhost:3000'
+}));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
+
+// Basic test route
+app.get('/', (req, res) => {
+  res.send('Server is running!');
+});
 
 // Virtual Assistant class implementation
 class VirtualAssistant {
@@ -82,6 +92,15 @@ async function handleQuery(req, res) {
 // Routes
 app.post('/api/assistant/query', validateQuery, handleQuery);
 
+// Serve React build files in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'frontend/build')));
+  
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend/build', 'index.html'));
+  });
+}
+
 // Global error handling middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);
@@ -101,8 +120,7 @@ app.use((req, res) => {
 });
 
 // Start server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
     console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
 });
